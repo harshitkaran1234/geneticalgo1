@@ -1,0 +1,152 @@
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+int calFit(int a[], int b[],int n){
+    int i=0,fitness=0;
+    for(i=0;i<n;i++){
+        fitness=fitness+abs(b[i]-b[a[i]]);
+    }
+    return fitness; 
+}
+
+
+int main() {
+    int n;
+    cin>>n;
+    int a,b,c,d,k;
+    int array[n];
+    int temp1[n];
+    int temp2[n];
+    int c1[n];
+    int c2[n];
+    int c3[n];
+    int c4[n];
+    int b1[n];
+    int b2[n];
+    int b3[n];
+    int b4[n];
+    for(int i=0;i<n;i++){
+        cin>>array[i];
+    }
+    for(int i=0;i<n;i++){
+        b1[i]=rand()%3;
+       // cout<<b1[i]<<endl;
+    }
+    for(int i=0;i<n;i++){
+        b2[i]=rand()%3;
+    }
+     for(int i=0;i<n;i++){
+        b3[i]=rand()%3;
+    }
+     for(int i=0;i<n;i++){
+        b4[i]=rand()%3;
+    }
+    a=calFit(b1,array,n);
+    b=calFit(b2,array,n);
+    c=calFit(b3,array,n);
+    d=calFit(b4,array,n);
+    cout<<a<<endl;
+    cout<<b<<endl;
+    cout<<c<<endl;
+    cout<<d<<endl;
+    k=2;
+    for(k=2;k<n-1;k++){
+    for(int i=0;i<n;i++){
+        c1[i]=b1[i];
+    }
+    for(int i=0;i<n;i++){
+        c2[i]=b2[i];
+    }
+    for(int i=0;i<k;i++){
+        b1[i]=c1[i];
+        b2[i]=c2[i];
+    }
+    for(int i=k;i<n;i++){
+        b1[i]=c2[i];
+        b2[i]=c1[i];
+    }
+    b1[3]=2;
+    b2[3]=1;
+    if(calFit(b1,array,n)>a||calFit(b2,array,n)>b||calFit(b1,array,n)>b||calFit(b2,array,n)>a)
+     break;
+    if(calFit(b1,array,n)<a&&calFit(b2,array,n)<b&&calFit(b1,array,n)<b||calFit(b2,array,n)<a)
+     a=calFit(b1,array,n);
+     b=calFit(b2,array,n);
+    
+    }
+    
+    for(k=2;k<n-1;k++){
+    for(int i=0;i<n;i++){
+        c3[i]=b3[i];
+    }
+    for(int i=0;i<n;i++){
+        c4[i]=b4[i];
+    }
+    for(int i=0;i<k;i++){
+        b3[i]=c3[i];
+        b4[i]=c4[i];
+    }
+    for(int i=k;i<n;i++){
+        b3[i]=c4[i];
+        b4[i]=c3[i];
+    }
+    b3[3]=2;
+    b4[3]=1;
+    if(calFit(b3,array,n)>c||calFit(b4,array,n)>d||calFit(b3,array,n)>d||calFit(b4,array,n)>c)
+     break;
+    if(calFit(b3,array,n)<c&&calFit(b4,array,n)<d&&calFit(b3,array,n)<d||calFit(b4,array,n)<c){
+     a=calFit(b1,array,n);
+     b=calFit(b2,array,n);
+    }
+    }
+    if((calFit(b1,array,n)<=calFit(b2,array,n))&&(calFit(b1,array,n)<=calFit(b3,array,n))&&(calFit(b1,array,n)<=calFit(b4,array,n))&&(calFit(b1,array,n)<=calFit(c1,array,n))&&(calFit(b1,array,n)<=calFit(c2,array,n))&&(calFit(b1,array,n)<=calFit(c3,array,n))&&(calFit(b1,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<b1[i]<<" ";
+        }
+        cout<<calFit(b1,array,n);
+    }
+     if((calFit(b2,array,n)<=calFit(b1,array,n))&&(calFit(b2,array,n)<=calFit(b3,array,n))&&(calFit(b2,array,n)<=calFit(b4,array,n))&&(calFit(b2,array,n)<=calFit(c1,array,n))&&(calFit(b2,array,n)<=calFit(c2,array,n))&&(calFit(b2,array,n)<=calFit(c3,array,n))&&(calFit(b2,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<b2[i]<<" ";
+        }
+        cout<<calFit(b2,array,n);
+    }
+     if((calFit(b3,array,n)<=calFit(b2,array,n))&&(calFit(b3,array,n)<=calFit(b1,array,n))&&(calFit(b3,array,n)<=calFit(b4,array,n))&&(calFit(b3,array,n)<=calFit(c1,array,n))&&(calFit(b3,array,n)<=calFit(c2,array,n))&&(calFit(b3,array,n)<=calFit(c3,array,n))&&(calFit(b3,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<b3[i]<<" ";
+        }
+        cout<<calFit(b3,array,n);
+    }
+     if((calFit(b4,array,n)<=calFit(b2,array,n))&&(calFit(b4,array,n)<=calFit(b3,array,n))&&(calFit(b4,array,n)<=calFit(b1,array,n))&&(calFit(b4,array,n)<=calFit(c1,array,n))&&(calFit(b4,array,n)<=calFit(c2,array,n))&&(calFit(b4,array,n)<=calFit(c3,array,n))&&(calFit(b4,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<b4[i]<<" ";
+        }
+        cout<<calFit(b4,array,n);
+    }
+     if((calFit(c1,array,n)<=calFit(b2,array,n))&&(calFit(c1,array,n)<=calFit(b3,array,n))&&(calFit(c1,array,n)<=calFit(b4,array,n))&&(calFit(c1,array,n)<=calFit(b1,array,n))&&(calFit(c1,array,n)<=calFit(c2,array,n))&&(calFit(c1,array,n)<=calFit(c3,array,n))&&(calFit(c1,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<c1[i]<<" ";
+        }
+        cout<<calFit(c1,array,n);
+    }
+     if((calFit(c2,array,n)<=calFit(b2,array,n))&&(calFit(c2,array,n)<=calFit(b3,array,n))&&(calFit(c2,array,n)<=calFit(b4,array,n))&&(calFit(c2,array,n)<=calFit(c1,array,n))&&(calFit(c2,array,n)<=calFit(b1,array,n))&&(calFit(c2,array,n)<=calFit(c3,array,n))&&(calFit(c2,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<c2[i]<<" ";
+        }
+        cout<<calFit(c2,array,n);
+    }
+     if((calFit(c3,array,n)<=calFit(b2,array,n))&&(calFit(c3,array,n)<=calFit(b3,array,n))&&(calFit(c3,array,n)<=calFit(b4,array,n))&&(calFit(c3,array,n)<=calFit(c1,array,n))&&(calFit(c3,array,n)<=calFit(c2,array,n))&&(calFit(c3,array,n)<=calFit(b1,array,n))&&(calFit(c3,array,n)<=calFit(c4,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<c3[i]<<" ";
+        }
+        cout<<calFit(c3,array,n);
+    }
+     if((calFit(c4,array,n)<=calFit(b2,array,n))&&(calFit(c4,array,n)<=calFit(c4,array,n))&&(calFit(c4,array,n)<=calFit(b4,array,n))&&(calFit(c4,array,n)<=calFit(c1,array,n))&&(calFit(c4,array,n)<=calFit(c2,array,n))&&(calFit(c4,array,n)<=calFit(c3,array,n))&&(calFit(c4,array,n)<=calFit(b1,array,n))){
+        for(int i=0;i<n;i++){
+            cout<<c4[i]<<" ";
+        }
+        cout<<calFit(c4,array,n);
+    }
+    
+	return 0;
+}
